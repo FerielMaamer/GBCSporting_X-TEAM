@@ -1,0 +1,33 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Product Manager";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr><th>Code</th><th>Name</th><th>Price</th><th>Release Date</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model) {
+            <tr>
+                <td>@product.Code</td>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.ReleaseDate</td>
+                <td>
+                    <a asp-controller="Product" asp-action="Edit"
+                       asp-route-id="@product.ProductId"
+                       asp-route-slug="@product.Slug">Edit</a>
+                    <a asp-controller="Product" asp-action="Delete"
+                       asp-route-id="@product.ProductId"
+                       asp-route-slug="@product.Slug">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Product" asp-action="Add">Add Product</a>

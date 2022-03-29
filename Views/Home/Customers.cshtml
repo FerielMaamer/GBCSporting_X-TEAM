@@ -1,0 +1,32 @@
+﻿@model List<Customer>
+@{
+    ViewData["Title"] = "Customer Manager";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr><th>Name</th><th>Email</th><th>City</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model) {
+            <tr>
+                <td>@customer.FirstName @customer.LastName</td>
+                <td>@customer.Email</td>
+                <td>@customer.City</td>
+                <td>
+                    <a asp-controller="Customer" asp-action="Edit"
+                       asp-route-id="@customer.CustomerId"
+                       asp-route-slug="@customer.Slug">Edit</a>
+                    <a asp-controller="Customer" asp-action="Delete"
+                       asp-route-id="@customer.CustomerId"
+                       asp-route-slug="@customer.Slug">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Customer" asp-action="Add">Add Customer</a>

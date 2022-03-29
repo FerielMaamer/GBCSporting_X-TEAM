@@ -1,0 +1,68 @@
+﻿@model Customer
+
+@{
+    string title = ViewBag.Action + " Customer";
+    ViewBag.Title = title;
+}
+
+<h2>@title</h2>
+
+<form asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input asp-for="FirstName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName">Last Name</label>
+        <input asp-for="LastName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address">Address</label>
+        <input asp-for="Address" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="City">City</label>
+        <input asp-for="City" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="State">State</label>
+        <input asp-for="State" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PostalCode">Postal Code</label>
+        <input asp-for="PostalCode" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CountryId">Country</label>
+        <select asp-for="CountryId" class="form-control">
+            <option value="">Select a country</option>
+            @foreach (Country c in ViewBag.Countries)
+            {
+                <option value="@c.CountryId">@c.CountryName</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone">Phone</label>
+        <input asp-for="Phone" class="form-control">
+    </div>
+
+    <input type="hidden" asp-for="CustomerId" />
+
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <a asp-controller="Home" asp-action="Customers" class="btn btn-primary">Cancel</a>
+</form>
