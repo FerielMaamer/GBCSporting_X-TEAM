@@ -16,3 +16,27 @@ html {
 body {
   margin-bottom: 60px;
 }
+.fn-sm{
+    font-size: 0.5rem;
+}
+
+.fn-md{
+    font-size: 0.8rem;
+}
+
+.fn-lg{
+    font-size: 1.5rem;
+}
+
+.main-blue {
+    background-color: #0065A4;
+
+}
+.navbar-brand img {
+    height: 57px;
+    width: 75px;
+}
+.navbar{
+    padding:0;
+    margin: 0;
+}
