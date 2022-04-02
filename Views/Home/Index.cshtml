@@ -3,32 +3,52 @@
 }
 
 <div class="text-left">
-    <h1 class="display-4">SportsPro Technical Support</h1>
-    <h4>Sports management software for the sports enthusiast</h4>
+    <h4>SportsPro Technical Support</h4>
+    <h6>Sports management software for the sports enthusiast</h6>
 </div>
 
 <div>
-    <table class="table">
-        <thead>
-        <tr>Admin</tr>
-        </thead>
-        <tbody>
-        <tr><a class="list-group-item" asp-area="" asp-controller="Home" asp-action="Products">Manage Products</a></tr>
-        <tr><a class="list-group-item" asp-area="" asp-controller="Home" asp-action="Technicians">Manage Technicians</a></tr>
-        <tr><a class="list-group-item" asp-area="" asp-controller="Home" asp-action="Customers">Manage Customers</a></tr>
-        <tr><a class="list-group-item" asp-area="" asp-controller="Home" asp-action="Incidents">Manage Incidents</a></tr>
-        <tr><a class="list-group-item" asp-area="" asp-controller="Home" asp-action="Registrations">Manage Registrations</a></tr>
-        </tbody>
-    </table>    
-    <table class="table">
-    <thead>
-        <tr>Technicians</tr>
-        </thead>
-        <tbody>
-        <tr><a class="list-group-item" asp-area="" asp-controller="Home" asp-action="UpdateIncident">Update Incident</a></tr>
-        </tbody>
+    <h5>Admin Management:</h5>
+    <div class="home-index-menu">
+        <div class="index-menu-card">
+            <a class="list-group-item" asp-area="" asp-controller="Home" asp-action="Products">
+                <img src="~/img/product.svg" />
+                Products
+            </a>
+        </div>
+        <div class="index-menu-card">
+            <a class="list-group-item" asp-area="" asp-controller="Home" asp-action="Technicians">
+                <img src="~/img/technician.svg" />
+                Technicians
+            </a>
+        </div>
+        <div class="index-menu-card">
+            <a class="list-group-item" asp-area="" asp-controller="Home" asp-action="Customers">
+                <img src="~/img/customer.svg" />
+                Customers
+            </a>
+        </div>
+        <div class="index-menu-card">
+            <a class="list-group-item" asp-area="" asp-controller="Home" asp-action="Incidents">
+                <img src="~/img/incident.svg" />
+                Incidents
+            </a>
+        </div>
+        <div class="index-menu-card">
+            <a class="list-group-item" asp-area="" asp-controller="Home" asp-action="Registrations">
+                <img src="~/img/registration.svg" />
+                Registrations
+            </a>
+        </div>
 
-    </table>
+    </div>
+         <h5>Technician Management:</h5>
+        <div class="index-menu-card">
+            <a class="list-group-item" asp-area="" asp-controller="Home" asp-action="UpdateIncident">
+                <img src="~/img/update.svg" />
+                Update Incidents
+            </a>
+        </div>
 </div>
 
 

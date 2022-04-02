@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <rect width="64" height="64" id="artboard_1" />
+    <clipPath id="clip_1">
+      <use xlink:href="#artboard_1" clip-rule="evenodd" />
+    </clipPath>
+    <image width="90" height="90" xlink:href="data:image/png;base64,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" id="img_1" />
+  </defs>
+  <g id="Artboard" clip-path="url(#clip_1)">
+    <use xlink:href="#artboard_1" stroke="none" fill="#FFFFFF" />
+    <g>
+      <use xlink:href="#img_1" fill="#FFFFFF" stroke="none" transform="matrix(0.5777778 0 0 0.5777778 6 6)" />
+    </g>
+  </g>
+</svg>
