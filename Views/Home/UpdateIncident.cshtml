@@ -14,14 +14,15 @@
 
     <div class="form-group">
         
-        <select >
+        <select asp-for="Name" name="techId" required>
+            <option value="">Please select a Technician</option>
             @foreach(var technician in ViewBag.Technician)
             {
-                <option name="techId" value="@technician.TechnicianId">@technician.Name</option>
+                <option value="@technician.TechnicianId" >@technician.Name</option>
             }
         </select> 
+        
     </div>
     
     <button type="submit" class="btn btn-primary">Select</button>
-    <!--<a asp-controller="UpdateIncident" asp-action="Index">Select</a> -->
 </form>

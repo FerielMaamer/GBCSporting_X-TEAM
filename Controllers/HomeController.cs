@@ -39,7 +39,7 @@ namespace GBCSporting_X_TEAM.Controllers
 
         public IActionResult Incidents()
         {
-            var incident = context.Incidents.Include(c => c.Customer).Include(p => p.Product).OrderBy(x => x.Title).ToList();
+            var incident = context.Incidents.Include(c => c.Customer).Include(p => p.Product).Include(t => t.Technician).OrderBy(x => x.Title).ToList();
             return View(incident);
         }
 
@@ -50,7 +50,7 @@ namespace GBCSporting_X_TEAM.Controllers
 
         public IActionResult UpdateIncident()
         {
-            ViewBag.Technician = context.Technicians.OrderBy(x => x.Name).ToList();
+            ViewBag.Technician = context.Technicians.OrderBy(x => x.TechnicianId).ToList();
             return View();           
         }
 

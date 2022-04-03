@@ -1,0 +1,39 @@
+﻿@model Incident 
+
+@{
+    string title = ViewBag.Action + " Incident";
+    ViewBag.Title = title;
+}
+
+<h2>@title</h2>
+
+<h1>@ViewBag.id</h1>
+
+
+@*<h4>Technician: @ViewBag.Incidents.Technician.Name</h4>
+<h4>Customer: @ViewBag.Incidents.Customer.FirstName</h4>*@
+
+
+
+<form>
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <input asp-for="Description" class="form-control">
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="DateOpened">Date Opened</label>
+        <input asp-for="DateOpened" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateClosed">Date Closed</label>
+        <input asp-for="DateClosed" class="form-control">
+    </div>
+
+    <input type="hidden" asp-for="IncidentId" />
+
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <a asp-controller="Home" asp-action="Incidents" class="btn btn-primary">Cancel</a>
+</form>
