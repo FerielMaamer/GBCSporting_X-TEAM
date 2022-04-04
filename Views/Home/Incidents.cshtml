@@ -1,4 +1,5 @@
-﻿@model List<Incident>
+﻿@using GBCSporting_X_TEAM.Models.ViewModels
+@model IEnumerable<IncidentViewModel>
 @{
     ViewData["Title"] = "Incident Manager";
 }
@@ -14,9 +15,8 @@
         @foreach (var incident in Model) {
             <tr>
                 <td>@incident.Title</td>
-                <td>@incident.Technician.TechnicianId</td>
-                <td>@incident.Customer.FirstName @incident.Customer.LastName </td>
-                <td>@incident.Product.Name</td>
+                <td>@incident.firstName @incident.LastName </td>
+                <td>@incident.ProductName</td>
                 <td>@incident.DateOpened</td>
                 <td>
                     <a asp-controller="Incident" asp-action="Edit"

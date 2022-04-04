@@ -1,4 +1,5 @@
-﻿@model Incident 
+﻿@using GBCSporting_X_TEAM.Models.ViewModels
+@model IncidentViewModel
 
 @{
     string title = ViewBag.Action + " Incident";
@@ -14,9 +15,9 @@
         <label asp-for="CustomerId">Customer:</label>
         <select asp-for="CustomerId" class="form-control">
             <option value="">Select a Customer</option>
-            @foreach(Customer customer in ViewBag.Customers)
+            @foreach(SelectListItem c in Model.Customers)
             {
-                <option value="@customer.CustomerId">@customer.FirstName @customer.LastName</option>
+                <option value="@c.Value">@c.Text</option>
             }
         </select>
     </div>
@@ -25,9 +26,9 @@
         <label asp-for="ProductId">Product:</label>
         <select asp-for="ProductId"class="form-control">
              <option value="">select a Product</option> 
-            @foreach(Product product in ViewBag.Products)
+            @foreach(SelectListItem p in Model.Products)
             {
-                <option value="@product.ProductId">@product.Name</option>
+                <option value="@p.Value">@p.Text</option>
             }
         </select>
     </div>
@@ -46,9 +47,9 @@
         <label asp-for="TechnicianId">Technician:</label>
         <select asp-for="TechnicianId" class="form-control">
             <option value="">select a Technician</option> 
-            @foreach(Technician technician in ViewBag.Technicians)
+            @foreach(SelectListItem t in Model.Technicians)
             {
-                <option value = "@technician.TechnicianId">@technician.Name</option>
+                <option value = "@t.Value">@t.Text</option>
             }
         </select>
     </div>

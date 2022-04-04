@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GBCSporting_X_TEAM.Models;
 using System.Linq;
+using GBCSporting_X_TEAM.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GBCSporting_X_TEAM.Controllers
 {
@@ -17,22 +19,77 @@ namespace GBCSporting_X_TEAM.Controllers
         public IActionResult Add()
         {
             ViewBag.Action = "Add";
-            ViewBag.Customers = context.Customers.OrderBy(c => c.FirstName).ToList();
-            ViewBag.Products = context.Products;
-            ViewBag.Technicians = context.Technicians;
+            var vm = new IncidentViewModel();
+            var customers = context.Customers;
+            var products = context.Products;
+            var technicians = context.Technicians;
 
-            return View("Edit", new Incident());
+            var customerList = customers.Select(
+                c => new SelectListItem
+            {
+               Text = c.FirstName + " " + c.LastName,
+               Value = c.CountryId.ToString(),
+            }).ToList();
+
+            var productList = products.Select(
+                c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.ProductId.ToString()
+                }).ToList();
+
+            var technicianList = technicians.Select(
+                c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.TechnicianId.ToString()
+                }).ToList();
+
+            vm.Customers = customerList;
+            vm.Products = productList;
+            vm.Technicians = technicianList;
+
+
+            return View("Edit", vm);
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
             ViewBag.Action = "Edit";
-            ViewBag.Customers = context.Customers.OrderBy(c => c.FirstName).ToList();
-            ViewBag.Products = context.Products;
-            ViewBag.Technicians = context.Technicians;
-            var incident = context.Incidents.Find(id);
-            return View(incident);
+            var vm = new IncidentViewModel();
+            var customers = context.Customers;
+            var products = context.Products;
+            var technicians = context.Technicians;
+
+            var customerList = customers.Select(
+                c => new SelectListItem
+                {
+                    Text = c.FirstName + " " + c.LastName,
+                    Value = c.CountryId.ToString(),
+                }).ToList();
+
+            var productList = products.Select(
+                c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.ProductId.ToString()
+                }).ToList();
+
+            var technicianList = technicians.Select(
+                c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.TechnicianId.ToString()
+                }).ToList();
+
+            vm.Customers = customerList;
+            vm.Products = productList;
+            vm.Technicians = technicianList;
+
+            Incident incident = context.Incidents.Find(id);
+
+            return View(vm);
         }
 
         [HttpPost]

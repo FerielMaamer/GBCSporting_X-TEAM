@@ -1,4 +1,5 @@
 ﻿using GBCSporting_X_TEAM.Models;
+using GBCSporting_X_TEAM.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -39,9 +40,23 @@ namespace GBCSporting_X_TEAM.Controllers
 
         public IActionResult Incidents()
         {
-            var incident = context.Incidents.Include(c => c.Customer).Include(p => p.Product).Include(t => t.Technician).OrderBy(x => x.Title).ToList();
-            return View(incident);
+            var viewModels = context.Incidents.
+                    Include(i => i.Customer).
+                    Include(i => i.Product).
+                    Select(i => new IncidentViewModel
+                    {
+                        Title = i.Title,
+                        firstName =i.Customer.FirstName,
+                        LastName = i.Customer.LastName,
+                        ProductName = i.Product.Name,
+                        DateOpened =i.DateOpened
+                    });
+
+            return View(viewModels);
         }
+            
+
+        
 
         public IActionResult Registrations()
         {
