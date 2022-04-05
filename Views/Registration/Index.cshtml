@@ -1,0 +1,47 @@
+﻿@model Incident
+@{
+
+}
+
+@foreach(var i in @ViewBag.CustName){
+    <h1>Customer: @i.FirstName @i.LastName</h1>
+}
+<h1>Registrations</h1>
+
+@if (!string.IsNullOrEmpty(ViewBag.message)){            
+    <h1>@ViewBag.message</h1>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+    <thead>
+        <tr><th>Product</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (Incident incident in ViewBag.Incidents) {
+            
+                <tr>
+                    <td>@incident.Product.Name</td>              
+                    <td>
+                        <a asp-controller="Registration" asp-action="Delete"
+                           asp-route-id="">Delete</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+    </table>
+}
+
+<form>
+    <div class="form-group">
+        <label asp-for="ProductId">Product:</label>
+        <select asp-for="ProductId" class="form-control">
+             <option value="">select a Product</option> 
+            @foreach(Product product in ViewBag.Products)
+            {
+                <option value="@product.ProductId">@product.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>

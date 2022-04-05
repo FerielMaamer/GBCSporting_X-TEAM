@@ -3,7 +3,11 @@
 
 }
 
-<h1>@ViewBag.ID</h1>
+@foreach(var i in @ViewBag.TechName){
+    <h1>Technician: @i.Name</h1>
+}
+<h1>Assigned/Open Incidents</h1>
+
 @if (!string.IsNullOrEmpty(ViewBag.message)){            
     <h1>@ViewBag.message</h1>
 }
@@ -18,7 +22,6 @@ else
             
                 <tr>
                     <td>@incident.Title</td>
-                    <td>@incident.Technician.TechnicianId</td>
                     <td>@incident.Customer.FirstName @incident.Customer.LastName </td>
                     <td>@incident.Product.Name</td>
                     <td>@incident.DateOpened</td>

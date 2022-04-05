@@ -8,6 +8,10 @@
 <h2>@title</h2>
 
 <h1>@ViewBag.id</h1>
+@foreach(var item in ViewBag.incidents)
+{
+    <h4>@item.IncidentId</h4>
+}
 
 
 @*<h4>Technician: @ViewBag.Incidents.Technician.Name</h4>

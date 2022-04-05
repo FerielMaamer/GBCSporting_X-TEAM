@@ -60,6 +60,7 @@ namespace GBCSporting_X_TEAM.Controllers
 
         public IActionResult Registrations()
         {
+            ViewBag.Customer = context.Customers.OrderBy(x => x.CustomerId).ToList();
             return View();
         }
 

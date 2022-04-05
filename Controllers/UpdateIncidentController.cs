@@ -16,8 +16,9 @@ namespace GBCSporting_X_TEAM.Controllers
         [HttpPost]
         public IActionResult Index()
         {
-            ViewBag.message = null;
+            ViewBag.message = null;            
             var TechID = Int32.Parse(Request.Form["techId"]);
+            ViewBag.TechName = context.Technicians.Where(x => x.TechnicianId == TechID).ToList();
             IQueryable<Incident> query = context.Incidents;
             query = query.Where(x => x.Technician.TechnicianId == TechID)
                 .Include(c => c.Customer).Include(p => p.Product).Include(t => t.Technician);
