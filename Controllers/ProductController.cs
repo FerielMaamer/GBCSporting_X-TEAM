@@ -33,10 +33,16 @@ namespace GBCSporting_X_TEAM.Controllers
             if (ModelState.IsValid)
             {
                 if (product.ProductId == 0)
+                {
                     context.Products.Add(product);
+                    TempData["message"] = $"{product.Name} was added!";
+                }
                 else
+                {
                     context.Products.Update(product);
-                context.SaveChanges();
+                    context.SaveChanges();
+                    TempData["message"] = $"{product.Name} was updated!";
+                }
                 return RedirectToAction("Products", "Home");
             }
             else
@@ -58,6 +64,7 @@ namespace GBCSporting_X_TEAM.Controllers
         {
             context.Products.Remove(product);
             context.SaveChanges();
+            TempData["message"] = $"model was deleted!";
             return RedirectToAction("Products", "Home");
         }
     }

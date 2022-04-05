@@ -40,6 +40,12 @@
                     </ul>
                 </div>
             </div>
+             @* show any message in TempData *@
+            @if (TempData["message"] != null)
+            {
+                <h4 class="bg-success p-2">@TempData["message"]</h4>
+            }
+
         </nav>
     </header>
     <div class="container">

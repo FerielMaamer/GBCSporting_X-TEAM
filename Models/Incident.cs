@@ -27,8 +27,9 @@ namespace GBCSporting_X_TEAM.Models
         public DateTime DateOpened { get; set; } = DateTime.Now;
         public DateTime DateClosed { get; set; }
 
-        public int? TechnicianId { get; set; }
+        public int TechnicianId { get; set; }
         public Technician? Technician { get; set; }
+
     }
 
 }
