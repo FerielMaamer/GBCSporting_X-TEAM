@@ -1,33 +1,51 @@
 ﻿@model List<Product>
 @{
-    ViewData["Title"] = "Product Manager";
+    ViewData["Title"] = "Products";
 }
-<h4>@ViewData["Title"]</h4>
 
+<div class=" container tb-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>@ViewData["Title"]</h2>
+            </div>
 
+        </div>
+    </div>
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr><th>Code</th><th>Name</th><th>Price</th><th>Release Date</th></tr>
-    </thead>
-    <tbody>
-        @foreach (var product in Model) {
+    <table class="table table-bordered tbl-hover">
+        <thead class="thead">
             <tr>
-                <td>@product.Code</td>
-                <td>@product.Name</td>
-                <td>@product.Price</td>
-                <td>@product.ReleaseDate</td>
-                <td>
-                    <a asp-controller="Product" asp-action="Edit"
-                       asp-route-id="@product.ProductId"
-                       asp-route-slug="@product.Slug">Edit</a>
-                    <a asp-controller="Product" asp-action="Delete"
-                       asp-route-id="@product.ProductId"
-                       asp-route-slug="@product.Slug">Delete</a>
-                </td>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Release Date</th>
+                <th>Action</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Code</td>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.ReleaseDate</td>
 
-<a asp-controller="Product" asp-action="Add">Add Product</a>
+
+
+                    <td class="btn-table">
+                        <a class=" btn btn-primary btn-sm rounded-2 main-blue " asp-controller="Product" asp-action="Edit"
+                        asp-route-id="@product.ProductId" asp-route-slug="@product.Slug"><img height=25 width=25
+                            src="~/img/pencil.png"></a>
+                        <a class=" btn btn-danger btn-sm rounded-2" asp-controller="Product" asp-action="Delete"
+                        asp-route-id="@product.ProductId" asp-route-slug="@product.Slug"><img height=25 width=25
+                            src="~/img/delete.png"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary btn-md main-blue" asp-controller="Product" asp-action="Add">Add Product</a>
+</div>

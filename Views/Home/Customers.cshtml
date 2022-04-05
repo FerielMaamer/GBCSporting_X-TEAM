@@ -2,13 +2,18 @@
 @{
     ViewData["Title"] = "Customer Manager";
 }
-<h4>@ViewData["Title"]</h4>
 
+<div class=" container tb-wrapper">
+     <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6"><h2>@ViewData["Title"]</h2></div>
 
-
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr><th>Name</th><th>Email</th><th>City</th></tr>
+            </div>
+        </div>
+    
+    <table class="table table-bordered tbl-hover">
+    <thead class="thead">
+        <tr><th>Name</th><th>Email</th><th>City</th><th>Action</th></tr>
     </thead>
     <tbody>
         @foreach (var customer in Model) {
@@ -17,16 +22,17 @@
                 <td>@customer.Email</td>
                 <td>@customer.City</td>
                 <td>
-                    <a asp-controller="Customer" asp-action="Edit"
+                    <a class=" btn btn-primary btn-sm rounded-2 main-blue " asp-controller="Customer" asp-action="Edit"
                        asp-route-id="@customer.CustomerId"
-                       asp-route-slug="@customer.Slug">Edit</a>
-                    <a asp-controller="Customer" asp-action="Delete"
+                       asp-route-slug="@customer.Slug"><img height=25 width=25 src="~/img/pencil.png"></a>
+                    <a class=" btn btn-danger btn-sm rounded-2" asp-controller="Customer" asp-action="Delete"
                        asp-route-id="@customer.CustomerId"
-                       asp-route-slug="@customer.Slug">Delete</a>
+                       asp-route-slug="@customer.Slug"><img height=25 width=25 src="~/img/delete.png"></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-<a asp-controller="Customer" asp-action="Add">Add Customer</a>
+<a class="btn btn-primary btn-md main-blue" asp-action="Add">Add Customer</a>
+</div>
