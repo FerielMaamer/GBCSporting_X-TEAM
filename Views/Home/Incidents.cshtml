@@ -1,32 +1,54 @@
 ﻿@using GBCSporting_X_TEAM.Models.ViewModels
 @model IEnumerable<IncidentViewModel>
 @{
-    ViewData["Title"] = "Incident Manager";
+    ViewData["Title"] = "Incidents";
 }
-<h4>@ViewData["Title"]</h4>
 
 
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr><th>Title</th><th>Customer</th><th>Product</th><th>Date Opened</th><th></th></tr>
-    </thead>
-    <tbody>
-        @foreach (var incident in Model) {
+
+<div class=" container tb-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>@ViewData["Title"]</h2>
+            </div>
+
+        </div>
+    </div>
+
+
+    <table class="table table-bordered tbl-hover tbl-fn-sm">
+        <thead class="thead">
             <tr>
-                <td>@incident.Title</td>
-                <td>@incident.firstName @incident.LastName </td>
-                <td>@incident.ProductName</td>
-                <td>@incident.DateOpened</td>
-                <td>
-                    <a asp-controller="Incident" asp-action="Edit"
-                       asp-route-id="@incident.IncidentId">Edit</a>
-                    <a asp-controller="Incident" asp-action="Delete"
-                       asp-route-id="@incident.IncidentId" asp-route-cid="@incident.CustomerId">Delete </a>
-                </td>
+                <th>Title</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Date Opened</th>
+                <th>Action</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var incident in Model)
+            {
+                <tr>
+                    @if(incident.Title.Length > 60){
+                        <td><span class="fn-md">@incident.Title</span></td>
+                    }else{
+                        <td>@incident.Title</td>
+                    }
+                    <td>@incident.firstName @incident.LastName</td>
+                    <td>@incident.ProductName</td>
+                    <td>@incident.DateOpened</td>
+                     <td class="btn-table">
+                        <a class=" btn btn-primary btn-sm rounded-2 main-blue " asp-controller="Incident" asp-action="Edit" asp-route-id="@incident.IncidentId"><img height=25 width=25 src="~/img/pencil.png"></a>
+                        <a  class=" btn btn-danger btn-sm rounded-2" asp-controller="Incident" asp-action="Delete" asp-route-id="@incident.IncidentId"
+                        asp-route-cid="@incident.CustomerId"><img height=25 width=25 src="~/img/delete.png"> </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<a asp-controller="Incident" asp-action="Add">Add Incident</a>
+    <a class="btn btn-primary btn-md main-blue" asp-controller="Incident" asp-action="Add">Add Incident</a>
+</div>

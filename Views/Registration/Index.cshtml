@@ -1,21 +1,29 @@
 ﻿@model Incident
 @{
-
+    ViewData["Title"] = "Registrations";
 }
 
 @foreach(var i in @ViewBag.CustName){
     <h1>Customer: @i.FirstName @i.LastName</h1>
 }
-<h1>Registrations</h1>
+
 
 @if (!string.IsNullOrEmpty(ViewBag.message)){            
+    <h1>Registrations</h1>
     <h1>@ViewBag.message</h1>
 }
 else
 {
-    <table class="table table-bordered table-striped">
-    <thead>
-        <tr><th>Product</th><th></th></tr>
+    <div class=" container tb-wrapper">
+     <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6"><h2>@ViewData["Title"]</h2></div>
+
+            </div>
+        </div>
+    <table class="table table-bordered tbl-hover">
+    <thead class="thead">
+        <tr><th>Product</th><th>Action</th></tr>
     </thead>
     <tbody>
         @foreach (Incident incident in ViewBag.Incidents) {
@@ -23,13 +31,14 @@ else
                 <tr>
                     <td>@incident.Product.Name</td>              
                     <td>
-                        <a asp-controller="Registration" asp-action="Delete"
-                           asp-route-id="">Delete</a>
+                        <a class=" btn btn-danger btn-sm rounded-2" asp-controller="Registration" asp-action="Delete"
+                           asp-route-id=""><img height=25 width=25 src="~/img/delete.png"></a>
                     </td>
                 </tr>
         }
     </tbody>
     </table>
+    </div>
 }
 
 <form>

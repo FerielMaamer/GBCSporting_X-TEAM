@@ -1,30 +1,37 @@
 ﻿@model List<Technician>
 @{
-    ViewData["Title"] = "Technician Manager";
+    ViewData["Title"] = "Technicians";
 }
-<h4>@ViewData["Title"]</h4>
+
+<div class=" container tb-wrapper">
+     <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6"><h2>@ViewData["Title"]</h2></div>
+
+            </div>
+        </div>
 
 
-
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr><th>Name</th><th>Email</th><th>Phone</th><th></th></tr>
+<table class="table table-bordered tbl-hover">
+    <thead class="thead">
+        <tr><th>Name</th><th>Email</th><th>Phone</th><th>Action</th></tr>
     </thead>
     <tbody>
         @foreach (var technician in Model) {
-            <tr>
+            <tr class="btn-table">
                 <td>@technician.Name</td>
                 <td>@technician.Email</td>
                 <td>@technician.Phone</td>
                 <td>
-                    <a asp-controller="Technician" asp-action="Edit"
-                       asp-route-id="@technician.TechnicianId">Edit</a>
-                    <a asp-controller="Technician" asp-action="Delete"
-                       asp-route-id="@technician.TechnicianId">Delete</a>
+                    <a class=" btn btn-primary btn-sm rounded-2 main-blue " asp-controller="Technician" asp-action="Edit"
+                       asp-route-id="@technician.TechnicianId"><img height=25 width=25 src="~/img/pencil.png"></a>
+                    <a class=" btn btn-danger btn-sm rounded-2" asp-controller="Technician" asp-action="Delete"
+                       asp-route-id="@technician.TechnicianId"><img height=25 width=25 src="~/img/delete.png"></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-<a asp-controller="Technician" asp-action="Add">Add Technician</a>
+<a class="btn btn-primary btn-md main-blue" asp-controller="Technician" asp-action="Add">Add Technician</a>
+</div>
