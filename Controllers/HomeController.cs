@@ -14,30 +14,30 @@ namespace GBCSporting_X_TEAM.Controllers
         {
             context = ctx;
         }
-        
+       
         public IActionResult Index()
         {
             return View();
         }
-       
+        [Route("Products")]
         public IActionResult Products()
         {
             var products= context.Products.OrderByDescending(x => x.ReleaseDate).ToList();
             return View(products);
         }
-        
+        [Route("Technicians")]
         public IActionResult Technicians()
         {
             var technician = context.Technicians.OrderBy(x => x.Name).ToList();
             return View(technician);
         }
-        
+        [Route("customers")]
         public IActionResult Customers()
         {
             var customer = context.Customers.OrderBy(x => x.FirstName).ToList();
             return View(customer);
         }
-        
+        [Route("Incidents")]
         public IActionResult Incidents()
         {
             var  viewModels = context.Incidents.
@@ -58,13 +58,13 @@ namespace GBCSporting_X_TEAM.Controllers
             return View(viewModels);
         
         }
-        
+        [Route("Registrations")]
         public IActionResult Registrations()
         {
             ViewBag.Customer = context.Customers.OrderBy(x => x.CustomerId).ToList();
             return View();
         }
-
+        [Route("update-Incidents")]
         public IActionResult UpdateIncident()
         {
             ViewBag.Technician = context.Technicians.OrderBy(x => x.TechnicianId).ToList();
