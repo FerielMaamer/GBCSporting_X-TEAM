@@ -40,9 +40,9 @@ namespace GBCSporting_X_TEAM.Controllers
                 else
                 {
                     context.Products.Update(product);
-                    context.SaveChanges();
                     TempData["message"] = $"{product.Name} was updated!";
                 }
+                context.SaveChanges();
                 return RedirectToAction("Products", "Home");
             }
             else

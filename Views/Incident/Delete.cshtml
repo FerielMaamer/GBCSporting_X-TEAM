@@ -1,10 +1,11 @@
-﻿@model Incident
+﻿@using GBCSporting_X_TEAM.Models.ViewModels
+@model IncidentViewModel
 @{
     ViewBag.Title = "Delete Incident";
 }
 
 <h2>Confirm Deletion</h2>
-<h3>@Model.Title  (@ViewBag.Customer.FirstName @ViewBag.Customer.LastName)</h3>
+<h3>@Model.Title  (@Model.firstName @Model.LastName)</h3>
 
 <form asp-action="Delete" method="post">
     <input type="hidden" asp-for="IncidentId" />

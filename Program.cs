@@ -30,6 +30,17 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+/*
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapControllerRoute(
+        name: "paging_and_routing",
+        pattern: "{controller}/{action}/{id?}");
+});
+
+*/
+
 
 app.UseAuthorization();
 

@@ -9,12 +9,12 @@ namespace GBCSporting_X_TEAM.Controllers
     public class HomeController : Controller
     {
         private GbcSportingContext context { get; set; }
-
+        
         public HomeController(GbcSportingContext ctx)
         {
             context = ctx;
         }
-       
+        
         public IActionResult Index()
         {
             return View();
@@ -25,13 +25,13 @@ namespace GBCSporting_X_TEAM.Controllers
             var products= context.Products.OrderByDescending(x => x.ReleaseDate).ToList();
             return View(products);
         }
-       
+        
         public IActionResult Technicians()
         {
             var technician = context.Technicians.OrderBy(x => x.Name).ToList();
             return View(technician);
         }
-       
+        
         public IActionResult Customers()
         {
             var customer = context.Customers.OrderBy(x => x.FirstName).ToList();
@@ -40,7 +40,7 @@ namespace GBCSporting_X_TEAM.Controllers
         
         public IActionResult Incidents()
         {
-            var viewModels = context.Incidents.
+            var  viewModels = context.Incidents.
                     Include(i => i.Customer).
                     Include(i => i.Product).
                     Select(i => new IncidentViewModel
