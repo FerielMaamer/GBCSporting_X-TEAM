@@ -15,8 +15,12 @@ html {
   min-height: 100%;
 }
 
+.min-height {
+    min-height: 80vh;
+}
 body {
   margin-bottom: 60px;
+
 }
 .fn-sm{
     font-size: 0.5rem;
@@ -93,6 +97,7 @@ input[type="submit"] {
 
 .custom-select {
     width: 300px;
+    margin-bottom: 10px;
 }
 
 .table-title {

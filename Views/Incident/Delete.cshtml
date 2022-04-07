@@ -3,13 +3,26 @@
     ViewBag.Title = "Delete Incident";
 }
 
-<h2>Confirm Deletion</h2>
+
+<div class=" container frm-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>@ViewData["Title"]</h2>
+            </div>
+
+        </div>
+    </div>
+
+
+<h4>Confirm Deletion of Incident</h4>
 <h3>@Model.Title  (@ViewBag.Customer.FirstName @ViewBag.Customer.LastName)</h3>
 
 <form asp-action="Delete" method="post">
     <input type="hidden" asp-for="IncidentId" />
 
-    <button type="submit" class="btn btn-primary">Delete</button>
+    <button type="submit" class="btn btn-danger">Delete</button>
     <a asp-controller="Home" asp-action="Incidents" class="btn btn-primary">Cancel</a>
 </form>
 
+</div>
