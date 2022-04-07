@@ -17,6 +17,18 @@
 @*<h4>Technician: @ViewBag.Incidents.Technician.Name</h4>
 <h4>Customer: @ViewBag.Incidents.Customer.FirstName</h4>*@
 
+<div class=" container frm-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>@ViewData["Title"]</h2>
+            </div>
+
+        </div>
+    </div>
+
+
+
 
 
 <form>
@@ -41,3 +53,4 @@
     <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
     <a asp-controller="Home" asp-action="Incidents" class="btn btn-primary">Cancel</a>
 </form>
+</div>

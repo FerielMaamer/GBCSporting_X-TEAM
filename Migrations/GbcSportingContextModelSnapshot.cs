@@ -202,7 +202,7 @@ namespace GBCSporting_X_TEAM.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TechnicianId")
+                    b.Property<int>("TechnicianId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -225,7 +225,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 1,
                             CustomerId = 1,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 4, 1, 40, 53, 863, DateTimeKind.Local).AddTicks(3361),
+                            DateOpened = new DateTime(2022, 4, 6, 21, 8, 30, 597, DateTimeKind.Local).AddTicks(8143),
                             Description = "The camera works with other software, only the simulator doesnt seem to recogize it.",
                             ProductId = 2,
                             TechnicianId = 5,
@@ -236,7 +236,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 2,
                             CustomerId = 2,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 4, 1, 40, 53, 863, DateTimeKind.Local).AddTicks(3365),
+                            DateOpened = new DateTime(2022, 4, 6, 21, 8, 30, 597, DateTimeKind.Local).AddTicks(8150),
                             Description = "Freeze occurs when a customer tries to check out with an empty cart.",
                             ProductId = 4,
                             TechnicianId = 2,
@@ -247,7 +247,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 3,
                             CustomerId = 2,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 4, 1, 40, 53, 863, DateTimeKind.Local).AddTicks(3368),
+                            DateOpened = new DateTime(2022, 4, 6, 21, 8, 30, 597, DateTimeKind.Local).AddTicks(8157),
                             Description = "Software gui glitches for a moment after tickets are purchased.",
                             ProductId = 4,
                             TechnicianId = 3,
@@ -258,7 +258,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 4,
                             CustomerId = 4,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 4, 1, 40, 53, 863, DateTimeKind.Local).AddTicks(3371),
+                            DateOpened = new DateTime(2022, 4, 6, 21, 8, 30, 597, DateTimeKind.Local).AddTicks(8163),
                             Description = "Seems to only occur if the return date is a tuesday.",
                             ProductId = 5,
                             TechnicianId = 1,
@@ -269,7 +269,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 5,
                             CustomerId = 4,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 4, 1, 40, 53, 863, DateTimeKind.Local).AddTicks(3373),
+                            DateOpened = new DateTime(2022, 4, 6, 21, 8, 30, 597, DateTimeKind.Local).AddTicks(8169),
                             Description = "If an item is scanned as returned some times it does appear in the pool and has to be re-added manually.",
                             ProductId = 5,
                             TechnicianId = 1,
@@ -435,7 +435,9 @@ namespace GBCSporting_X_TEAM.Migrations
 
                     b.HasOne("GBCSporting_X_TEAM.Models.Technician", "Technician")
                         .WithMany()
-                        .HasForeignKey("TechnicianId");
+                        .HasForeignKey("TechnicianId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
 

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GBCSporting_X_TEAM.Migrations
 {
     [DbContext(typeof(GbcSportingContext))]
-    [Migration("20220401034145_initial")]
+    [Migration("20220407010831_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -204,7 +204,7 @@ namespace GBCSporting_X_TEAM.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TechnicianId")
+                    b.Property<int>("TechnicianId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -227,7 +227,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 1,
                             CustomerId = 1,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 3, 31, 23, 41, 44, 522, DateTimeKind.Local).AddTicks(3699),
+                            DateOpened = new DateTime(2022, 4, 6, 21, 8, 30, 597, DateTimeKind.Local).AddTicks(8143),
                             Description = "The camera works with other software, only the simulator doesnt seem to recogize it.",
                             ProductId = 2,
                             TechnicianId = 5,
@@ -238,7 +238,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 2,
                             CustomerId = 2,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 3, 31, 23, 41, 44, 522, DateTimeKind.Local).AddTicks(3705),
+                            DateOpened = new DateTime(2022, 4, 6, 21, 8, 30, 597, DateTimeKind.Local).AddTicks(8150),
                             Description = "Freeze occurs when a customer tries to check out with an empty cart.",
                             ProductId = 4,
                             TechnicianId = 2,
@@ -249,7 +249,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 3,
                             CustomerId = 2,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 3, 31, 23, 41, 44, 522, DateTimeKind.Local).AddTicks(3710),
+                            DateOpened = new DateTime(2022, 4, 6, 21, 8, 30, 597, DateTimeKind.Local).AddTicks(8157),
                             Description = "Software gui glitches for a moment after tickets are purchased.",
                             ProductId = 4,
                             TechnicianId = 3,
@@ -260,7 +260,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 4,
                             CustomerId = 4,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 3, 31, 23, 41, 44, 522, DateTimeKind.Local).AddTicks(3716),
+                            DateOpened = new DateTime(2022, 4, 6, 21, 8, 30, 597, DateTimeKind.Local).AddTicks(8163),
                             Description = "Seems to only occur if the return date is a tuesday.",
                             ProductId = 5,
                             TechnicianId = 1,
@@ -271,7 +271,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 5,
                             CustomerId = 4,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 3, 31, 23, 41, 44, 522, DateTimeKind.Local).AddTicks(3723),
+                            DateOpened = new DateTime(2022, 4, 6, 21, 8, 30, 597, DateTimeKind.Local).AddTicks(8169),
                             Description = "If an item is scanned as returned some times it does appear in the pool and has to be re-added manually.",
                             ProductId = 5,
                             TechnicianId = 1,
@@ -437,7 +437,9 @@ namespace GBCSporting_X_TEAM.Migrations
 
                     b.HasOne("GBCSporting_X_TEAM.Models.Technician", "Technician")
                         .WithMany()
-                        .HasForeignKey("TechnicianId");
+                        .HasForeignKey("TechnicianId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
 
