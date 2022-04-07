@@ -2,22 +2,26 @@
 @model IncidentViewModel
 
 @{
-    ViewData["Title"] = "Update";
+    ViewData["Title"] = "Update Incident";
     //NameValueCollection nvc = Request.Form;
 
 }
-<h4>@ViewData["Title"]</h4>
 
-<p>testing the page</p>
-
-
+<div class="frm-wrapper w-75">
+   <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>@ViewData["Title"]</h2>
+            </div>
+                  </div>
+    </div>
 <form asp-action="Index" asp-controller="UpdateIncident" method="Post">
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
         
         <label asp-for="TechnicianId">Technician:</label>
-        <select asp-for="TechnicianId" name="techId" class="form-control">
+        <select class="custom-select" asp-for="TechnicianId" name="techId" class="form-control">
             <option value="">Select a technician</option>
             @foreach(SelectListItem c in Model.Technicians)
             {
@@ -30,3 +34,4 @@
    
     <button type="submit" class="btn btn-primary">Select</button>
 </form>
+</div>

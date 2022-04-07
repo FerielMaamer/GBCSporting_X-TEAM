@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-dark navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3" style="background-color: #005293;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/logo2.png" width="199" height="150"/></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/logo2.png" width="199" height="150" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -40,15 +40,27 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-         @* show any message in TempData *@
-            @if (TempData["message"] != null)
-            {
-                <h4 class="bg-success p-2">@TempData["message"]</h4>
-            }
 
+
+        </nav>
     </header>
-    <div class="container">
+
+    <div>
+        @* show any message in TempData *@
+        @if (TempData["message"] != null)
+        {
+            <div class="container w-75">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["message"] 
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="container min-height">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -56,9 +68,9 @@
 
     <footer class="border-top footer text-muted ">
         <div class="container">
-          <div class="fn-sm">
+            <div class="fn-md">
                 &copy; 2022 - GBCSporting_X_TEAM - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-          </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

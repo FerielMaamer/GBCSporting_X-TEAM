@@ -5,7 +5,20 @@
     ViewBag.Title = title;
 }
 
-<h2>@title</h2>
+
+
+
+<div class=" container frm-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>@ViewData["Title"]</h2>
+            </div>
+
+        </div>
+    </div>
+
+
 
 <form asp-action="Edit" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -42,7 +55,7 @@
 
     <div class="form-group">
         <label asp-for="CountryId">Country</label>
-        <select asp-for="CountryId" class="form-control">
+        <select class="custom-select" asp-for="CountryId" class="form-control">
             <option value="">Select a country</option>
             @foreach (Country c in ViewBag.Countries)
             {
@@ -66,3 +79,6 @@
     <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
     <a asp-controller="Home" asp-action="Customers" class="btn btn-primary">Cancel</a>
 </form>
+
+
+</div>
