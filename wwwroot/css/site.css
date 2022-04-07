@@ -1,49 +1,51 @@
 
 
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 .min-height {
     min-height: 80vh;
 }
-body {
-  margin-bottom: 60px;
 
+body {
+    margin-bottom: 60px;
 }
-.fn-sm{
+
+.fn-sm {
     font-size: 0.5rem;
 }
 
-.fn-md{
+.fn-md {
     font-size: 0.8rem;
 }
 
-.fn-lg{
+.fn-lg {
     font-size: 1.5rem;
 }
 
 .main-blue {
     background-color: #0065A4;
-
 }
+
 .navbar-brand img {
     height: 57px;
     width: 75px;
 }
-.navbar{
-    padding:0;
+
+.navbar {
+    padding: 0;
     margin: 0;
 }
 
@@ -51,15 +53,33 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
-.index-menu-card{
-    max-height: 125px;
+
+.index-menu-card {
+    max-height: 150px;
     max-width: 125px;
     padding: 5px;
     margin: 5px;
 }
-.menu-card-text{
 
-}
+    .index-menu-card:hover {
+        border: 1px solid #0065A4;
+        color: #0065A4;
+    }
+
+
+    .index-menu-card img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+
+    .index-menu-card a {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
 .tb-wrapper {
     background: #fff;
@@ -87,7 +107,6 @@ input[type="text"] {
     width: 300px;
     display: block;
     margin-bottom: 10px;
-
 }
 
 input[type="submit"] {
@@ -169,7 +188,7 @@ table.table-striped.tlb-hover {
 
 
 
-.btn-test{
+.btn-test {
     display: inline-block;
 }
 
@@ -179,7 +198,7 @@ table.table-striped.tlb-hover {
 
 
 tbody > tr:nth-of-type(odd) {
-    background-color:#bff1ff;
+    background-color: #bff1ff;
 }
 
 tbody > tr:nth-of-type(even) {
@@ -189,4 +208,3 @@ tbody > tr:nth-of-type(even) {
 tbody > tr:hover {
     background: #f5f5f5;
 }
-
