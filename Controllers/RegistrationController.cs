@@ -14,7 +14,7 @@ namespace GBCSporting_X_TEAM.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index()        {
+        public IActionResult List()        {
             ViewBag.message = null;
             ViewBag.Products = context.Products.ToList();
             var custID = Int32.Parse(Request.Form["custId"]);

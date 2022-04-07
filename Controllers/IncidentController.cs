@@ -93,11 +93,13 @@ namespace GBCSporting_X_TEAM.Controllers
 
             var incident = context.Incidents.Find(id);
             var customer = context.Customers.Find(cid);
-            var vm = new IncidentViewModel();
-            vm.Title = incident.Title;
-            vm.firstName = customer.FirstName;
-            vm.LastName = customer.LastName;
-            vm.IncidentId = incident.IncidentId;
+            var vm = new IncidentViewModel
+            {
+                Title = incident.Title,
+                firstName = customer.FirstName,
+                LastName = customer.LastName,
+                IncidentId = incident.IncidentId
+            };
 
             return View(vm);
         }

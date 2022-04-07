@@ -1,4 +1,5 @@
-﻿@model Incident 
+﻿@using GBCSporting_X_TEAM.Models.ViewModels
+@model IncidentViewModel
 
 @{
     string title = ViewBag.Action + " Incident";
@@ -7,11 +8,22 @@
 
 <h2>@title</h2>
 
-<h1>@ViewBag.id</h1>
-@foreach(var item in ViewBag.incidents)
-{
-    <h4>@item.IncidentId</h4>
-}
+
+<h7>Technician:                   @Model.TechnicianName</h7>
+<br />
+<h7>Customer:                     @Model.firstName @Model.LastName</h7>
+<br />
+
+<h7>Product:                      @Model.ProductName</h7>
+<br />
+
+<h7>Title:                        @Model.Title</h7>
+<br />
+
+<h7>Date Opened:                  @Model.DateOpened</h7>
+<br />
+
+
 
 
 @*<h4>Technician: @ViewBag.Incidents.Technician.Name</h4>
@@ -19,7 +31,9 @@
 
 
 
-<form>
+<form asp-action="Edit" method="post"> 
+
+
     <div class="form-group">
         <label asp-for="Description">Description</label>
         <input asp-for="Description" class="form-control">
@@ -35,9 +49,17 @@
         <label asp-for="DateClosed">Date Closed</label>
         <input asp-for="DateClosed" class="form-control">
     </div>
+     <input type="hidden" asp-for="IncidentId" />
+     <input type="hidden" asp-for="ProductId" />
+     <input type="hidden" asp-for="TechnicianId" />
+     <input type="hidden" asp-for="CustomerId" />
+    <input type="hidden" asp-for="TechnicianName" />
+    <input type="hidden" asp-for="ProductName" />
+    <input type="hidden" asp-for="firstName" />
+    <input type="hidden" asp-for="LastName" />
+    <input type="hidden" asp-for="Title" />
+    
 
-    <input type="hidden" asp-for="IncidentId" />
-
-    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <button type="submit" class="btn btn-primary">Save</button>
     <a asp-controller="Home" asp-action="Incidents" class="btn btn-primary">Cancel</a>
 </form>

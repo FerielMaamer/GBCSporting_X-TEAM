@@ -1,6 +1,7 @@
 ﻿using GBCSporting_X_TEAM.Models;
 using GBCSporting_X_TEAM.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -64,11 +65,27 @@ namespace GBCSporting_X_TEAM.Controllers
             ViewBag.Customer = context.Customers.OrderBy(x => x.CustomerId).ToList();
             return View();
         }
-        [Route("update-Incidents")]
+       
         public IActionResult UpdateIncident()
         {
-            ViewBag.Technician = context.Technicians.OrderBy(x => x.TechnicianId).ToList();
-            return View();           
+            var vm = new IncidentViewModel();
+          
+            var technicians = context.Technicians;
+           
+
+          
+
+            var technicianList = technicians.Select(
+                c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.TechnicianId.ToString()
+                }).ToList();
+
+          
+            vm.Technicians = technicianList;
+            
+            return View(vm);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
