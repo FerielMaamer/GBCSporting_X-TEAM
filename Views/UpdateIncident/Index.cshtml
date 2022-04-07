@@ -1,38 +1,45 @@
-﻿@model List<Incident>
-@{
+﻿@using GBCSporting_X_TEAM.Models.ViewModels
+@model IEnumerable<IncidentViewModel>
 
-}
 
-@foreach(var i in @ViewBag.TechName){
-    <h1>Technician: @i.Name</h1>
-}
-<h1>Assigned/Open Incidents</h1>
+   
+    <h4>Techninican: @ViewBag.Name.ToString()</h4>
 
-@if (!string.IsNullOrEmpty(ViewBag.message)){            
-    <h1>@ViewBag.message</h1>
-}
-else
-{
-    <table class="table table-bordered table-striped">
-    <thead>
-        <tr><th>Title</th><th>Tech</th><th>Customer</th><th>Product</th><th>Date Opened</th><th></th></tr>
-    </thead>
-    <tbody>
-        @foreach (var incident in Model) {
-            
+
+   <table class="table table-bordered tbl-hover tbl-fn-sm">
+        <thead class="thead">
+            <tr>
+                <th>Title</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Date Opened</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var incident in Model)
+            {
                 <tr>
-                    <td>@incident.Title</td>
-                    <td>@incident.Customer.FirstName @incident.Customer.LastName </td>
-                    <td>@incident.Product.Name</td>
+                    @if(incident.Title.Length > 60){
+                        <td><span class="fn-md">@incident.Title</span></td>
+                    }else{
+                        <td>@incident.Title</td>
+                    }
+                    <td>@incident.firstName @incident.LastName</td>
+                    <td>@incident.ProductName</td>
                     <td>@incident.DateOpened</td>
-                    <td>
-                        <a asp-controller="UpdateIncident" asp-action="Edit"
-                           asp-route-id="@incident.IncidentId">Edit</a>
+                     <td class="btn-table">
+                        <a class=" btn btn-primary btn-sm rounded-2 main-blue " asp-controller="UpdateIncident" 
+                        asp-action="Edit"
+                        asp-route-id="@incident.IncidentId"
+                        asp-route-tid="@incident.TechnicianId" 
+                        asp-route-tid="@incident.CustomerId"
+                        asp-route-tid="@incident.ProductId">
+                            <img height=25 width=25 src="~/img/pencil.png"></a>
                     </td>
                 </tr>
-        }
-    </tbody>
+            }
+        </tbody>
     </table>
-}
 
 <a asp-controller="Home" asp-action="UpdateIncident">Switch Technician</a>

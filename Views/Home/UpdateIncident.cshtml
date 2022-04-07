@@ -1,4 +1,6 @@
-﻿@model Technician
+﻿@using GBCSporting_X_TEAM.Models.ViewModels
+@model IncidentViewModel
+
 @{
     ViewData["Title"] = "Update";
     //NameValueCollection nvc = Request.Form;
@@ -9,20 +11,22 @@
 <p>testing the page</p>
 
 
-<form asp-action="Index" asp-controller="UpdateIncident" method="post">
+<form asp-action="Index" asp-controller="UpdateIncident" method="Post">
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
         
-        <select asp-for="Name" name="techId" required>
-            <option value="">Please select a Technician</option>
-            @foreach(var technician in ViewBag.Technician)
+        <label asp-for="TechnicianId">Technician:</label>
+        <select asp-for="TechnicianId" name="techId" class="form-control">
+            <option value="">Select a technician</option>
+            @foreach(SelectListItem c in Model.Technicians)
             {
-                <option value="@technician.TechnicianId" >@technician.Name</option>
+                <option value="@c.Value">@c.Text</option>
             }
-        </select> 
+        </select>
+        
         
     </div>
-    
+   
     <button type="submit" class="btn btn-primary">Select</button>
 </form>

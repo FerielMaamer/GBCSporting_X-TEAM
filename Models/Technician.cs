@@ -16,5 +16,7 @@ namespace GBCSporting_X_TEAM.Models
         [Required]
         public string Phone { get; set; }
 
+
+
     }
 }

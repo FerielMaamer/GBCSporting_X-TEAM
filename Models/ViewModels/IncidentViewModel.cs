@@ -24,6 +24,7 @@ namespace GBCSporting_X_TEAM.Models.ViewModels
         public List<SelectListItem>? Customers { get; set; }
         public List<SelectListItem>? Products { get; set; }
         public List<SelectListItem>? Technicians { get; set; }
+        public List<SelectListItem>? Incidents { get; set; }
 
 
 
