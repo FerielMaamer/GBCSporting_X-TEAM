@@ -72,9 +72,6 @@ namespace GBCSporting_X_TEAM.Controllers
           
             var technicians = context.Technicians;
            
-
-          
-
             var technicianList = technicians.Select(
                 c => new SelectListItem
                 {

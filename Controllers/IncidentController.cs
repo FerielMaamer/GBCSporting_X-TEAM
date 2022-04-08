@@ -15,6 +15,11 @@ namespace GBCSporting_X_TEAM.Controllers
             context = ctx;
         }
 
+
+        public IActionResult AllIncidents()
+        {
+            return View();  
+        }
         [HttpGet]
         public IActionResult Add()
         {
@@ -44,7 +49,7 @@ namespace GBCSporting_X_TEAM.Controllers
         [HttpPost]
         public IActionResult Edit(IncidentViewModel incident)
         {
-            Incident model = new Incident()
+            Incident model = new()
             {
                 IncidentId = incident.IncidentId,
                 ProductId = incident.ProductId,
@@ -84,7 +89,7 @@ namespace GBCSporting_X_TEAM.Controllers
                 content.TechnicianId = incident.TechnicianId;
                 return View(content);
             }
-            return RedirectToAction("Incidents", "Home");
+            
         }
 
         [HttpGet]
