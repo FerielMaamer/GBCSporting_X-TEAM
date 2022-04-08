@@ -1,6 +1,7 @@
 ﻿using GBCSporting_X_TEAM.Models;
 using GBCSporting_X_TEAM.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
