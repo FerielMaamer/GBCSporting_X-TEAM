@@ -14,15 +14,16 @@ namespace GBCSporting_X_TEAM.Controllers
         }
 
         [HttpPost]
-        public IActionResult List()        {
+        public IActionResult Index()
+        {
             ViewBag.message = null;
             ViewBag.Products = context.Products.ToList();
             var custID = Int32.Parse(Request.Form["custId"]);
             ViewBag.CustName = context.Customers.Where(x => x.CustomerId == custID).ToList();
-            IQueryable<Incident> query = context.Incidents;
-            query = query.Where(x => x.Customer.CustomerId == custID).Include(p => p.Product);
-            ViewBag.Incidents = query.ToList();            
-            var incidents = context.Incidents.Find(1); 
+            IQueryable<Registration> query = context.Registrations;
+            query = query.Where(x => x.CustomerId == custID).Include(p => p.Product);
+            ViewBag.Registrations = query.ToList();
+            var registration = context.Registrations.Find(1,2);
             if ((query != null) && (!query.Any()))
             {
                 ViewBag.message = "no results to show";
@@ -30,9 +31,11 @@ namespace GBCSporting_X_TEAM.Controllers
             }
             else
             {
-                return View(incidents);                
+                return View(registration);
             }
-            
+
         }
+
+
     }
 }

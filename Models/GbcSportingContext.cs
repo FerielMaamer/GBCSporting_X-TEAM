@@ -14,6 +14,7 @@ namespace GBCSporting_X_TEAM.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Technician> Technicians { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Registration> Registrations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -226,6 +227,32 @@ namespace GBCSporting_X_TEAM.Models
                     new Country { CountryId = 2, CountryName = "Canada" },
                     new Country { CountryId = 4, CountryName = "European Union" },
                     new Country { CountryId = 5, CountryName = "United kingdom" }
+                );
+
+            // composite primary key for Registration
+            modelBuilder.Entity<Registration>()
+            .HasKey(ba => new { ba.CustomerId, ba.ProductId });
+
+            // one-to-many relationship between Product and Registration
+            modelBuilder.Entity<Registration>()
+            .HasOne(r => r.Product)
+            .WithMany(p => p.Registrations)
+            .HasForeignKey(r => r.ProductId);
+
+            // one-to-many relationship between Customer and Registration
+            modelBuilder.Entity<Registration>()
+            .HasOne(r => r.Customer)
+            .WithMany(c => c.Registrations)
+            .HasForeignKey(r => r.CustomerId);
+
+            modelBuilder.Entity<Registration>().HasData(
+                    new Registration { CustomerId = 1, ProductId = 1 },
+                    new Registration { CustomerId = 1, ProductId = 2 },
+                    new Registration { CustomerId = 1, ProductId = 3 },
+                    new Registration { CustomerId = 2, ProductId = 1 },
+                    new Registration { CustomerId = 3, ProductId = 3 },
+                    new Registration { CustomerId = 4, ProductId = 5 },
+                    new Registration { CustomerId = 4, ProductId = 4 }
                 );
         }
     }

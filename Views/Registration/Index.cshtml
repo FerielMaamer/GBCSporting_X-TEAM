@@ -1,4 +1,4 @@
-﻿@model Incident
+﻿@model Registration
 @{
     ViewData["Title"] = "Registrations";
 }
@@ -13,34 +13,34 @@
 
     @foreach (var i in @ViewBag.CustName)
     {
-        <h4>Customer: @i.FirstName @i.LastName</h4>
+    <h4>Customer: @i.FirstName @i.LastName</h4>
     }
 
     @if (!string.IsNullOrEmpty(ViewBag.message))
     {
-        <h4>@ViewBag.message</h4>
+    <h4>@ViewBag.message</h4>
     }
     else
     {
 
-        <table class="table table-bordered tbl-hover">
-            <thead class="thead">
-                <tr><th>Product</th><th>Action</th></tr>
-            </thead>
-            <tbody>
-                @foreach (Incident incident in ViewBag.Incidents)
+    <table class="table table-bordered tbl-hover">
+        <thead class="thead">
+            <tr><th>Product</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+            @foreach (Registration registration in ViewBag.Registrations)
                 {
 
-                    <tr>
-                        <td>@incident.Product.Name</td>
-                        <td>
-                            <a class=" btn btn-danger btn-sm rounded-2" asp-controller="Registration" asp-action="Delete"
+            <tr>
+                <td>@registration.Product.Name</td>
+                <td>
+                    <a class=" btn btn-danger btn-sm rounded-2" asp-controller="Registration" asp-action="Delete"
                        asp-route-id=""><img height=25 width=25 src="~/img/delete.png"></a>
-                        </td>
-                    </tr>
+                </td>
+            </tr>
                 }
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
     }
 
@@ -51,7 +51,7 @@
                 <option value="">select a Product</option>
                 @foreach (Product product in ViewBag.Products)
                 {
-                    <option value="@product.ProductId">@product.Name</option>
+                <option value="@product.ProductId">@product.Name</option>
                 }
             </select>
         </div>
