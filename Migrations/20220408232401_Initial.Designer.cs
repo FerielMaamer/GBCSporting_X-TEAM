@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GBCSporting_X_TEAM.Migrations
 {
     [DbContext(typeof(GbcSportingContext))]
-    [Migration("20220408032858_initial")]
-    partial class initial
+    [Migration("20220408232401_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -191,7 +191,7 @@ namespace GBCSporting_X_TEAM.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateClosed")
+                    b.Property<DateTime?>("DateClosed")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOpened")
@@ -204,7 +204,7 @@ namespace GBCSporting_X_TEAM.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TechnicianId")
+                    b.Property<int?>("TechnicianId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -226,8 +226,8 @@ namespace GBCSporting_X_TEAM.Migrations
                         {
                             IncidentId = 1,
                             CustomerId = 1,
-                            DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(922),
+                            DateClosed = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOpened = new DateTime(2021, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "The camera works with other software, only the simulator doesnt seem to recogize it.",
                             ProductId = 2,
                             TechnicianId = 5,
@@ -237,19 +237,16 @@ namespace GBCSporting_X_TEAM.Migrations
                         {
                             IncidentId = 2,
                             CustomerId = 2,
-                            DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(929),
+                            DateOpened = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Freeze occurs when a customer tries to check out with an empty cart.",
                             ProductId = 4,
-                            TechnicianId = 2,
                             Title = "Software causes Point of Sale hardware to freeze"
                         },
                         new
                         {
                             IncidentId = 3,
                             CustomerId = 2,
-                            DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(936),
+                            DateOpened = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Software gui glitches for a moment after tickets are purchased.",
                             ProductId = 4,
                             TechnicianId = 3,
@@ -259,19 +256,16 @@ namespace GBCSporting_X_TEAM.Migrations
                         {
                             IncidentId = 4,
                             CustomerId = 4,
-                            DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(941),
+                            DateOpened = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Seems to only occur if the return date is a tuesday.",
                             ProductId = 5,
-                            TechnicianId = 1,
                             Title = "Software does not always send out rental return reminders"
                         },
                         new
                         {
                             IncidentId = 5,
                             CustomerId = 4,
-                            DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(947),
+                            DateOpened = new DateTime(2021, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "If an item is scanned as returned some times it does appear in the pool and has to be re-added manually.",
                             ProductId = 5,
                             TechnicianId = 1,
@@ -489,9 +483,7 @@ namespace GBCSporting_X_TEAM.Migrations
 
                     b.HasOne("GBCSporting_X_TEAM.Models.Technician", "Technician")
                         .WithMany()
-                        .HasForeignKey("TechnicianId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TechnicianId");
 
                     b.Navigation("Customer");
 

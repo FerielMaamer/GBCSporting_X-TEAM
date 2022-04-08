@@ -17,7 +17,7 @@
 
 
 <h4>Confirm Deletion of Incident</h4>
-<h3>@Model.Title  (@ViewBag.Customer.FirstName @ViewBag.Customer.LastName)</h3>
+<h3>@Model.Title  (@Model.firstName @Model.LastName)</h3>
 
 <form asp-action="Delete" method="post">
     <input type="hidden" asp-for="IncidentId" />

@@ -51,6 +51,8 @@ namespace GBCSporting_X_TEAM.Controllers
                     Include(i => i.Product).
                     Select(i => new IncidentViewModel
                     {
+                        IncidentId = i.IncidentId,
+                        CustomerId = i.CustomerId,
                         Title = i.Title,
                         firstName = i.Customer.FirstName,
                         LastName = i.Customer.LastName,

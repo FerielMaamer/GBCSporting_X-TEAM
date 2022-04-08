@@ -3,6 +3,7 @@ using GBCSporting_X_TEAM.Models;
 using System.Linq;
 using GBCSporting_X_TEAM.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace GBCSporting_X_TEAM.Controllers
 {
@@ -16,9 +17,46 @@ namespace GBCSporting_X_TEAM.Controllers
         }
 
 
-        public IActionResult AllIncidents()
+        public IActionResult UIncidents()
         {
-            return View();  
+            var viewModels = context.Incidents.
+                   Include(i => i.Customer).
+                   Include(i => i.Product).
+                   Include(i => i.Technician).
+                   Select(i => new IncidentViewModel
+                   {
+                       IncidentId = i.IncidentId,
+                       CustomerId = i.CustomerId,
+                       Title = i.Title,
+                       firstName = i.Customer.FirstName,
+                       LastName = i.Customer.LastName,
+                       ProductName = i.Product.Name,
+                       DateOpened = i.DateOpened,
+                       TechnicianId = i.Technician.TechnicianId
+                   }) ;
+
+            return View(viewModels);
+        }
+
+        public IActionResult OIncidents()
+        {
+            var viewModels = context.Incidents.
+                   Include(i => i.Customer).
+                   Include(i => i.Product).
+                   Include(i => i.Technician).
+                   Select(i => new IncidentViewModel
+                   {    
+                       IncidentId = i.IncidentId,
+                       CustomerId = i.CustomerId,
+                       Title = i.Title,
+                       firstName = i.Customer.FirstName,
+                       LastName = i.Customer.LastName,
+                       ProductName = i.Product.Name,
+                       DateOpened = i.DateOpened,
+                       DateClosed = i.DateClosed
+                   });
+
+            return View(viewModels);
         }
         [HttpGet]
         public IActionResult Add()
@@ -100,6 +138,7 @@ namespace GBCSporting_X_TEAM.Controllers
             var customer = context.Customers.Find(cid);
             var vm = new IncidentViewModel
             {
+                
                 Title = incident.Title,
                 firstName = customer.FirstName,
                 LastName = customer.LastName,

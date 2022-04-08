@@ -1,7 +1,7 @@
 ﻿@using GBCSporting_X_TEAM.Models.ViewModels
 @model IEnumerable<IncidentViewModel>
 @{
-    ViewData["Title"] = "All Incidents";
+    ViewData["Title"] = "Open Incidents";
 }
 
 
@@ -33,6 +33,7 @@
         <tbody>
             @foreach (var incident in Model)
             {
+                if(incident.DateClosed == null){
                 <tr>
                     @if(incident.Title.Length > 60){
                         <td><span class="fn-md">@incident.Title</span></td>
@@ -48,6 +49,7 @@
                         asp-route-cid="@incident.CustomerId"><img height=25 width=25 src="~/img/delete.png"> </a>
                     </td>
                 </tr>
+                }
             }
         </tbody>
     </table>

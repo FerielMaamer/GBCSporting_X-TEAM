@@ -6,7 +6,7 @@ namespace GBCSporting_X_TEAM.Models.ViewModels
     {
         public int IncidentId { get; set; }
         public string Title { get; set; }
-        public int TechnicianId { get; set; }
+        public int? TechnicianId { get; set; }
         public string? TechnicianName { get; set; }
         public string? firstName { get; set; }
         public string? LastName { get; set; }
@@ -14,7 +14,7 @@ namespace GBCSporting_X_TEAM.Models.ViewModels
 
         public string? ProductName { get; set; }
         public DateTime DateOpened { get; set; }
-        public DateTime DateClosed { get; set; }
+        public DateTime? DateClosed { get; set; }
 
         public int CustomerId { get; set; }
         public string Description { get; set; }
