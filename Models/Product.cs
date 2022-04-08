@@ -17,6 +17,6 @@ namespace GBCSporting_X_TEAM.Models
         public string Slug => Name?.Replace(' ', '-').ToLower() + '-' + Code?.Replace(' ', '-').ToLower();
 
         // navigation property to linking entity
-        public ICollection<Registration> Registrations { get; set; }
+        public ICollection<Registration>? Registrations { get; set; }
     }
 }

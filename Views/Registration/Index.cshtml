@@ -4,7 +4,6 @@
     ViewData["custID"] = Context.Session.GetInt32("custID");
 }
 
-<div>Customer ID: @Context.Session.GetInt32("custID")</div>
 <div class="frm-wrapper w-75">
     <div class="table-title">
         <div class="row">
@@ -49,7 +48,7 @@
     <form asp-action="Register" method="post" >
         <div class="form-group">
             <label asp-for="ProductId">Product:</label>
-            <select asp-for="ProductId" class="form-control custom-select">
+            <select asp-for="ProductId" class="form-control custom-select" required>
                 <option value="">select a Product</option>
                 @foreach (Product product in ViewBag.Products)
                 {
