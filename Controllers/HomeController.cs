@@ -21,6 +21,11 @@ namespace GBCSporting_X_TEAM.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         public IActionResult Products()
         {
             var products = context.Products.OrderByDescending(x => x.ReleaseDate).ToList();
