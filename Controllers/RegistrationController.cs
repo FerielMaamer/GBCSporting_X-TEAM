@@ -37,5 +37,22 @@ namespace GBCSporting_X_TEAM.Controllers
         }
 
 
+
+        [HttpPost]
+        public IActionResult Register(Registration registration)
+        {
+                registration.CustomerId = 1;
+                Registration model = new Registration()
+                {
+                    CustomerId = registration.CustomerId,
+                    ProductId = registration.ProductId,
+                };
+                context.Registrations.Update(registration);
+                context.SaveChanges();
+                return RedirectToAction("Index", "Registration");
+            
+        }
+
+
     }
 }
