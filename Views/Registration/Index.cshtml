@@ -1,6 +1,7 @@
 ﻿@model Registration
 @{
     ViewData["Title"] = "Registrations";
+    ViewData["custID"] = Context.Session.GetInt32("custID");
 }
 
 <div>Customer ID: @Context.Session.GetInt32("custID")</div>
@@ -34,8 +35,9 @@
             <tr>
                 <td>@registration.Product.Name</td>
                 <td>
-                    <a class=" btn btn-danger btn-sm rounded-2" asp-controller="Registration" asp-action="Delete"
-                       asp-route-id=""><img height=25 width=25 src="~/img/delete.png"></a>
+                       <a class=" btn btn-danger btn-sm rounded-2" asp-controller="Registration" asp-action="Delete"
+                        asp-route-pid="@registration.ProductId" asp-route-cid="@registration.CustomerId"><img height=25 width=25
+                            src="~/img/delete.png"></a>
                 </td>
             </tr>
                 }
@@ -55,7 +57,7 @@
                 }
             </select>
         </div>
-        @*<input type="hidden" asp-for="CustomerId" />*@
+        <input type="hidden" value="@Context.Session.GetInt32("custID")" asp-for="CustomerId" />
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </div>
