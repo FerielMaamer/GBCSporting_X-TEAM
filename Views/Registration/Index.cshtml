@@ -49,7 +49,7 @@
     <form asp-action="Register" method="post" >
         <div class="form-group">
             <label asp-for="ProductId">Product:</label>
-            <select asp-for="ProductId" class="form-control custom-select">
+            <select asp-for="ProductId" class="form-control custom-select" required>
                 <option value="">select a Product</option>
                 @foreach (Product product in ViewBag.Products)
                 {
