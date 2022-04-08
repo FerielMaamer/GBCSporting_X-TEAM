@@ -67,8 +67,23 @@ namespace GBCSporting_X_TEAM.Controllers
 
         public IActionResult UpdateIncident()
         {
-            ViewBag.Technician = context.Technicians.OrderBy(x => x.TechnicianId).ToList();
-            return View();
+
+            var vm = new IncidentViewModel();
+          
+            var technicians = context.Technicians;
+           
+            var technicianList = technicians.Select(
+                c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.TechnicianId.ToString()
+                }).ToList();
+
+          
+            vm.Technicians = technicianList;
+            
+            return View(vm);
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
