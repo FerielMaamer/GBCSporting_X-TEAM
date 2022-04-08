@@ -1,6 +1,7 @@
 ﻿using GBCSporting_X_TEAM.Models;
 using GBCSporting_X_TEAM.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -67,7 +68,6 @@ namespace GBCSporting_X_TEAM.Controllers
 
         public IActionResult UpdateIncident()
         {
-
             var vm = new IncidentViewModel();
           
             var technicians = context.Technicians;
@@ -83,7 +83,6 @@ namespace GBCSporting_X_TEAM.Controllers
             vm.Technicians = technicianList;
             
             return View(vm);
-
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
