@@ -15,9 +15,40 @@ namespace GBCSporting_X_TEAM.Controllers
             context = ctx;
         }
 
+        
+        public IActionResult Index(int id)
+        {
+
+           
+
+            var content = context.Incidents.Where(x => x.TechnicianId == id).
+                Include(c => c.Customer).
+                Include(p => p.Product).
+                Include(t => t.Technician)
+                .Select(i => new IncidentViewModel
+                {
+                    IncidentId = i.IncidentId,
+                    ProductId = i.ProductId,
+                    TechnicianId = i.TechnicianId,
+                    CustomerId = i.CustomerId,
+                    Title = i.Title,
+                    firstName = i.Customer.FirstName,
+                    LastName = i.Customer.LastName,
+                    ProductName = i.Product.Name,
+                    DateOpened = i.DateOpened,
+
+
+                });
+            ViewBag.Name = context.Technicians.Find(id).Name;
+
+
+            return View(content);
+
+        }
+
         [HttpPost]
         public IActionResult Index()
-        {
+        {  
           
             var TechId = Int32.Parse(Request.Form["techId"]);
             
@@ -52,26 +83,27 @@ namespace GBCSporting_X_TEAM.Controllers
             ViewBag.Action = "Update";
             var incident = context.Incidents.Find(id);
 
-            IncidentViewModel content = new IncidentViewModel
+            IncidentViewModel content = new()
             {
+                TechnicianId= incident.TechnicianId,
                 IncidentId = incident.IncidentId,
                 Title = incident.Title,
                 Description = incident.Description,
                 DateOpened = incident.DateOpened,
                 DateClosed = incident.DateClosed,
                 ProductId = incident.ProductId,
-                TechnicianId = incident.TechnicianId,
                 CustomerId = incident.CustomerId,
-              
+
 
                 TechnicianName = context.Technicians.Find(incident.TechnicianId).Name,
                 firstName = context.Customers.Find(incident.CustomerId).FirstName,
-                LastName= context.Customers.Find(incident.CustomerId).LastName,
+                LastName = context.Customers.Find(incident.CustomerId).LastName,
                 ProductName = context.Products.Find(incident.ProductId).Name,
 
+               
 
-            };
-
+        };
+           
 
             return View(content);
 
@@ -80,8 +112,9 @@ namespace GBCSporting_X_TEAM.Controllers
         [HttpPost]
         public IActionResult Edit(IncidentViewModel incident)
         {
-            Incident model = new Incident()
+            Incident model = new()
             {
+                
                 IncidentId = incident.IncidentId,
                 ProductId = incident.ProductId,
                 CustomerId = incident.CustomerId,
@@ -89,7 +122,8 @@ namespace GBCSporting_X_TEAM.Controllers
                 DateOpened = incident.DateOpened,
                 DateClosed = incident.DateClosed,
                 Description = incident.Description,
-                TechnicianId = incident.TechnicianId
+                TechnicianId = incident.TechnicianId,
+               
                 
             };
 
@@ -100,7 +134,8 @@ namespace GBCSporting_X_TEAM.Controllers
                 else
                     context.Incidents.Update(model);
                 context.SaveChanges();
-                return RedirectToAction("UpdateIncident", "Home");
+
+                return RedirectToAction("Index", new { id = model.TechnicianId });
             }
             else
             {
@@ -113,38 +148,6 @@ namespace GBCSporting_X_TEAM.Controllers
             }
         }
 
-        public IncidentViewModel loadContent()
-        {
-            var vm = new IncidentViewModel();
-            var customers = context.Customers;
-            var products = context.Products;
-            var technicians = context.Technicians;
-
-            var customerList = customers.Select(
-                c => new SelectListItem
-                {
-                    Text = c.FirstName + " " + c.LastName,
-                    Value = c.CustomerId.ToString(),
-                }).ToList();
-
-            var productList = products.Select(
-                c => new SelectListItem
-                {
-                    Text = c.Name,
-                    Value = c.ProductId.ToString()
-                }).ToList();
-
-            var technicianList = technicians.Select(
-                c => new SelectListItem
-                {
-                    Text = c.Name,
-                    Value = c.TechnicianId.ToString()
-                }).ToList();
-
-            vm.Customers = customerList;
-            vm.Products = productList;
-            vm.Technicians = technicianList;
-            return vm;
-        }
+       
     }
 }

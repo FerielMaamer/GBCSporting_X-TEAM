@@ -20,8 +20,8 @@
 
     <div class="form-group">
         
-        <label asp-for="TechnicianId">Technician:</label>
-        <select class="custom-select" asp-for="TechnicianId" name="techId" class="form-control">
+        <label>Technician:</label>
+        <select asp-for="TechnicianId" name="techId" class="form-control">
             <option value="">Select a technician</option>
             @foreach(SelectListItem c in Model.Technicians)
             {
