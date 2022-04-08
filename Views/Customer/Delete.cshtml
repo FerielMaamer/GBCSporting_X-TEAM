@@ -3,13 +3,25 @@
     ViewBag.Title = "Delete Customer";
 }
 
-<h2>Confirm Deletion</h2>
-<h3>@Model.FirstName @Model.LastName</h3>
+
+<div class=" container frm-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>@ViewData["Title"]</h2>
+            </div>
+
+        </div>
+    </div>
+
+<h3>Confirm Deletion of Customer</h3>
+<h4>@Model.FirstName @Model.LastName</h4>
 
 <form asp-action="Delete" method="post">
     <input type="hidden" asp-for="CustomerId" />
 
-    <button type="submit" class="btn btn-primary">Delete</button>
+    <button type="submit" class="btn btn-danger">Delete</button>
     <a asp-controller="Home" asp-action="Customers" class="btn btn-primary">Cancel</a>
 </form>
 
+</div>

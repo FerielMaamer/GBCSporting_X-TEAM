@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GBCSporting_X_TEAM.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -117,6 +117,30 @@ namespace GBCSporting_X_TEAM.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Registrations",
+                columns: table => new
+                {
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Registrations", x => new { x.CustomerId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_Registrations_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Registrations_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Countries",
                 columns: new[] { "CountryId", "CountryName" },
@@ -169,11 +193,25 @@ namespace GBCSporting_X_TEAM.Migrations
                 columns: new[] { "IncidentId", "CustomerId", "DateClosed", "DateOpened", "Description", "ProductId", "TechnicianId", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 6, 17, 43, 26, 920, DateTimeKind.Local).AddTicks(3225), "The camera works with other software, only the simulator doesnt seem to recogize it.", 2, 5, "Simulator can not find installed camera." },
-                    { 2, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 6, 17, 43, 26, 920, DateTimeKind.Local).AddTicks(3229), "Freeze occurs when a customer tries to check out with an empty cart.", 4, 2, "Software causes Point of Sale hardware to freeze" },
-                    { 3, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 6, 17, 43, 26, 920, DateTimeKind.Local).AddTicks(3233), "Software gui glitches for a moment after tickets are purchased.", 4, 3, "Software gui glitches." },
-                    { 4, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 6, 17, 43, 26, 920, DateTimeKind.Local).AddTicks(3236), "Seems to only occur if the return date is a tuesday.", 5, 1, "Software does not always send out rental return reminders" },
-                    { 5, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 6, 17, 43, 26, 920, DateTimeKind.Local).AddTicks(3239), "If an item is scanned as returned some times it does appear in the pool and has to be re-added manually.", 5, 1, "Software sometimes does not add returned item to available item pool automatically" }
+                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(922), "The camera works with other software, only the simulator doesnt seem to recogize it.", 2, 5, "Simulator can not find installed camera." },
+                    { 2, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(929), "Freeze occurs when a customer tries to check out with an empty cart.", 4, 2, "Software causes Point of Sale hardware to freeze" },
+                    { 3, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(936), "Software gui glitches for a moment after tickets are purchased.", 4, 3, "Software gui glitches." },
+                    { 4, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(941), "Seems to only occur if the return date is a tuesday.", 5, 1, "Software does not always send out rental return reminders" },
+                    { 5, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(947), "If an item is scanned as returned some times it does appear in the pool and has to be re-added manually.", 5, 1, "Software sometimes does not add returned item to available item pool automatically" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Registrations",
+                columns: new[] { "CustomerId", "ProductId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 1, 3 },
+                    { 2, 1 },
+                    { 3, 3 },
+                    { 4, 4 },
+                    { 4, 5 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -195,6 +233,11 @@ namespace GBCSporting_X_TEAM.Migrations
                 name: "IX_Incidents_TechnicianId",
                 table: "Incidents",
                 column: "TechnicianId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Registrations_ProductId",
+                table: "Registrations",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -203,13 +246,16 @@ namespace GBCSporting_X_TEAM.Migrations
                 name: "Incidents");
 
             migrationBuilder.DropTable(
+                name: "Registrations");
+
+            migrationBuilder.DropTable(
+                name: "Technicians");
+
+            migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "Products");
-
-            migrationBuilder.DropTable(
-                name: "Technicians");
 
             migrationBuilder.DropTable(
                 name: "Countries");

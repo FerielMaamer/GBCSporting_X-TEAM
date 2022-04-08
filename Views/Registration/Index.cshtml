@@ -1,56 +1,65 @@
-﻿@model Incident
+﻿@model Registration
 @{
     ViewData["Title"] = "Registrations";
+    ViewData["custID"] = Context.Session.GetInt32("custID");
 }
 
-@foreach(var i in @ViewBag.CustName){
-    <h1>Customer: @i.FirstName @i.LastName</h1>
-}
-
-
-@if (!string.IsNullOrEmpty(ViewBag.message)){            
-    <h1>Registrations</h1>
-    <h1>@ViewBag.message</h1>
-}
-else
-{
-    <div class=" container tb-wrapper">
-     <div class="table-title">
-            <div class="row">
-                <div class="col-sm-6"><h2>@ViewData["Title"]</h2></div>
-
-            </div>
+<div>Customer ID: @Context.Session.GetInt32("custID")</div>
+<div class="frm-wrapper w-75">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6"><h2>@ViewData["Title"]</h2></div>
         </div>
-    <table class="table table-bordered tbl-hover">
-    <thead class="thead">
-        <tr><th>Product</th><th>Action</th></tr>
-    </thead>
-    <tbody>
-        @foreach (Incident incident in ViewBag.Incidents) {
-            
-                <tr>
-                    <td>@incident.Product.Name</td>              
-                    <td>
-                        <a class=" btn btn-danger btn-sm rounded-2" asp-controller="Registration" asp-action="Delete"
-                           asp-route-id=""><img height=25 width=25 src="~/img/delete.png"></a>
-                    </td>
-                </tr>
-        }
-    </tbody>
-    </table>
     </div>
-}
 
-<form>
-    <div class="form-group">
-        <label asp-for="ProductId">Product:</label>
-        <select asp-for="ProductId" class="form-control">
-             <option value="">select a Product</option> 
-            @foreach(Product product in ViewBag.Products)
-            {
+    @foreach (var i in @ViewBag.CustName)
+    {
+    <h4>Customer: @i.FirstName @i.LastName</h4>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewBag.message))
+    {
+    <h4>@ViewBag.message</h4>
+    }
+    else
+    {
+
+    <table class="table table-bordered tbl-hover">
+        <thead class="thead">
+            <tr><th>Product</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+            @foreach (Registration registration in ViewBag.Registrations)
+                {
+
+            <tr>
+                <td>@registration.Product.Name</td>
+                <td>
+                       <a class=" btn btn-danger btn-sm rounded-2" asp-controller="Registration" asp-action="Delete"
+                        asp-route-pid="@registration.ProductId" asp-route-cid="@registration.CustomerId"><img height=25 width=25
+                            src="~/img/delete.png"></a>
+                </td>
+            </tr>
+                }
+        </tbody>
+    </table>
+
+    }
+
+    <form asp-action="Register" method="post" >
+        <div class="form-group">
+            <label asp-for="ProductId">Product:</label>
+            <select asp-for="ProductId" class="form-control custom-select">
+                <option value="">select a Product</option>
+                @foreach (Product product in ViewBag.Products)
+                {
                 <option value="@product.ProductId">@product.Name</option>
-            }
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+                }
+            </select>
+        </div>
+        <input type="hidden" value="@Context.Session.GetInt32("custID")" asp-for="CustomerId" />
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+
+<a asp-controller="Home" asp-action="Registrations">Switch Customer</a>

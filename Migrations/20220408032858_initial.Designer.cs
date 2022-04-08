@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GBCSporting_X_TEAM.Migrations
 {
     [DbContext(typeof(GbcSportingContext))]
-    [Migration("20220406214327_Initial")]
-    partial class Initial
+    [Migration("20220408032858_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -227,7 +227,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 1,
                             CustomerId = 1,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 6, 17, 43, 26, 920, DateTimeKind.Local).AddTicks(3225),
+                            DateOpened = new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(922),
                             Description = "The camera works with other software, only the simulator doesnt seem to recogize it.",
                             ProductId = 2,
                             TechnicianId = 5,
@@ -238,7 +238,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 2,
                             CustomerId = 2,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 6, 17, 43, 26, 920, DateTimeKind.Local).AddTicks(3229),
+                            DateOpened = new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(929),
                             Description = "Freeze occurs when a customer tries to check out with an empty cart.",
                             ProductId = 4,
                             TechnicianId = 2,
@@ -249,7 +249,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 3,
                             CustomerId = 2,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 6, 17, 43, 26, 920, DateTimeKind.Local).AddTicks(3233),
+                            DateOpened = new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(936),
                             Description = "Software gui glitches for a moment after tickets are purchased.",
                             ProductId = 4,
                             TechnicianId = 3,
@@ -260,7 +260,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 4,
                             CustomerId = 4,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 6, 17, 43, 26, 920, DateTimeKind.Local).AddTicks(3236),
+                            DateOpened = new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(941),
                             Description = "Seems to only occur if the return date is a tuesday.",
                             ProductId = 5,
                             TechnicianId = 1,
@@ -271,7 +271,7 @@ namespace GBCSporting_X_TEAM.Migrations
                             IncidentId = 5,
                             CustomerId = 4,
                             DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2022, 4, 6, 17, 43, 26, 920, DateTimeKind.Local).AddTicks(3239),
+                            DateOpened = new DateTime(2022, 4, 7, 23, 28, 57, 465, DateTimeKind.Local).AddTicks(947),
                             Description = "If an item is scanned as returned some times it does appear in the pool and has to be re-added manually.",
                             ProductId = 5,
                             TechnicianId = 1,
@@ -345,6 +345,58 @@ namespace GBCSporting_X_TEAM.Migrations
                             Name = "Falcon Rental Manager",
                             Price = 109.98999999999999,
                             ReleaseDate = new DateTime(2017, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("GBCSporting_X_TEAM.Models.Registration", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CustomerId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Registrations");
+
+                    b.HasData(
+                        new
+                        {
+                            CustomerId = 1,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            CustomerId = 1,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            CustomerId = 1,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            CustomerId = 2,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            CustomerId = 3,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            CustomerId = 4,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            CustomerId = 4,
+                            ProductId = 4
                         });
                 });
 
@@ -446,6 +498,35 @@ namespace GBCSporting_X_TEAM.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Technician");
+                });
+
+            modelBuilder.Entity("GBCSporting_X_TEAM.Models.Registration", b =>
+                {
+                    b.HasOne("GBCSporting_X_TEAM.Models.Customer", "Customer")
+                        .WithMany("Registrations")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GBCSporting_X_TEAM.Models.Product", "Product")
+                        .WithMany("Registrations")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("GBCSporting_X_TEAM.Models.Customer", b =>
+                {
+                    b.Navigation("Registrations");
+                });
+
+            modelBuilder.Entity("GBCSporting_X_TEAM.Models.Product", b =>
+                {
+                    b.Navigation("Registrations");
                 });
 #pragma warning restore 612, 618
         }

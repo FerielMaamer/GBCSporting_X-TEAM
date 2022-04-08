@@ -15,5 +15,8 @@ namespace GBCSporting_X_TEAM.Models
         [Required]
         public DateTime ReleaseDate { get; set; } = DateTime.Now;
         public string Slug => Name?.Replace(' ', '-').ToLower() + '-' + Code?.Replace(' ', '-').ToLower();
+
+        // navigation property to linking entity
+        public ICollection<Registration> Registrations { get; set; }
     }
 }
