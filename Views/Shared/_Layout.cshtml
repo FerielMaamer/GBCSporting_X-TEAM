@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string ActiveNav(string action)
+    {
+        string currentAction = ViewContext.RouteData.Values["action"].ToString();
+        return (action == currentAction) ? "active" : "";
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,28 +26,28 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="nav nav-pills flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light fn-md" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light fn-md @ActiveNav("Index")"  asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light fn-md" asp-area="" asp-controller="Home" asp-action="Products">Products</a>
+                            <a class="nav-link text-light fn-md @ActiveNav("Products")"  asp-controller="Home" asp-action="Products">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light fn-md" asp-area="" asp-controller="Home" asp-action="Technicians">Technicians</a>
+                            <a class="nav-link text-light fn-md @ActiveNav("Technicians")"  asp-controller="Home" asp-action="Technicians">Technicians</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light fn-md" asp-area="" asp-controller="Home" asp-action="Customers">Customers</a>
+                            <a class="nav-link text-light fn-md @ActiveNav("Customers")"  asp-controller="Home" asp-action="Customers">Customers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light fn-md" asp-area="" asp-controller="Home" asp-action="Incidents">Incidents</a>
+                            <a class="nav-link text-light fn-md @ActiveNav("Incidents")" asp-area="" asp-controller="Home" asp-action="Incidents">Incidents</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light fn-md" asp-area="" asp-controller="Home" asp-action="Registrations">Registrations</a>
+                            <a class="nav-link text-light fn-md @ActiveNav("Registrations")" asp-area="" asp-controller="Home" asp-action="Registrations">Registrations</a>
                         </li>
                         <div class="float-right">
                             <li class="nav-item">
-                                <a class="nav-link text-light fn-md" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                                <a class="nav-link text-light fn-md @ActiveNav("About")" asp-area="" asp-controller="Home" asp-action="About">About</a>
                             </li>
                         </div>
                     </ul>
