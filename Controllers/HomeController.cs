@@ -23,7 +23,7 @@ namespace GBCSporting_X_TEAM.Controllers
 
         public IActionResult About()
         {
-            return View();
+            return View(About);
         }
 
         public IActionResult Products()

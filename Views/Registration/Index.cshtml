@@ -4,7 +4,6 @@
     ViewData["custID"] = Context.Session.GetInt32("custID");
 }
 
-<div>Customer ID: @Context.Session.GetInt32("custID")</div>
 <div class="frm-wrapper w-75">
     <div class="table-title">
         <div class="row">
@@ -15,6 +14,7 @@
     @foreach (var i in @ViewBag.CustName)
     {
     <h4>Customer: @i.FirstName @i.LastName</h4>
+
     }
 
     @if (!string.IsNullOrEmpty(ViewBag.message))
@@ -49,7 +49,7 @@
     <form asp-action="Register" method="post" >
         <div class="form-group">
             <label asp-for="ProductId">Product:</label>
-            <select asp-for="ProductId" class="form-control custom-select">
+            <select asp-for="ProductId" class="form-control custom-select" required>
                 <option value="">select a Product</option>
                 @foreach (Product product in ViewBag.Products)
                 {
@@ -59,7 +59,7 @@
         </div>
         <input type="hidden" value="@Context.Session.GetInt32("custID")" asp-for="CustomerId" />
         <button type="submit" class="btn btn-primary">Register</button>
+        <a class="btn btn-primary" asp-controller="Home" asp-action="Registrations">Switch Customer</a>
     </form>
 </div>
 
-<a asp-controller="Home" asp-action="Registrations">Switch Customer</a>
