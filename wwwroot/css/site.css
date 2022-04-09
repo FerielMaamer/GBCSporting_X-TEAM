@@ -208,3 +208,11 @@ tbody > tr:nth-of-type(even) {
 tbody > tr:hover {
     background: #f5f5f5;
 }
+
+.input-validation-error
+{
+    border: 2px solid #dc3545;
+    background-color: lightgray;
+   }
+.validation-summary-valid { display: none; }
+.validation-summary-errors ul { list-style: none; }
