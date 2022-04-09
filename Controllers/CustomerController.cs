@@ -35,8 +35,20 @@ namespace GBCSporting_X_TEAM.Controllers
         [HttpPost]
         public IActionResult Edit(Customer customer)
         {
-            if (ModelState.IsValid)
+            var EmailExists = context.Customers.Where(c => c.Email == customer.Email);
+               
+            if (!ModelState.IsValid || EmailExists != null)
             {
+                if (EmailExists != null) {
+                    ViewBag.EmailExists = "Email exists";
+                }
+
+                ViewBag.Action = (customer.CustomerId == 0) ? "Add" : "Edit";
+                ViewBag.Countries = context.Countries
+                .OrderBy(x => x.CountryName).ToList();
+                return View(customer);
+
+            } else { 
                 if (customer.CustomerId == 0)
                     context.Customers.Add(customer);
                 else
@@ -44,13 +56,7 @@ namespace GBCSporting_X_TEAM.Controllers
                 context.SaveChanges();
                 return RedirectToAction("Customers", "Home");
             }
-            else
-            {
-                ViewBag.Action = (customer.CustomerId == 0) ? "Add" : "Edit";
-                ViewBag.Countries = context.Countries
-                .OrderBy(x => x.CountryName).ToList();
-                return View(customer);
-            }
+            
         }
 
         [HttpGet]
