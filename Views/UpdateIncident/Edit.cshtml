@@ -6,23 +6,6 @@
     ViewBag.Title = title;
 }
 
-<h2>@title</h2>
-
-
-<h7>Technician:                   @Model.TechnicianName </h7>
-<br />
-<h7>Customer:                     @Model.firstName @Model.LastName</h7>
-<br />
-
-<h7>Product:                      @Model.ProductName</h7>
-<br />
-
-<h7>Title:                        @Model.Title</h7>
-<br />
-
-<h7>Date Opened:                  @Model.DateOpened</h7>
-<br />
-
 
 
 
@@ -37,24 +20,37 @@
             </div>
 
         </div>
+
     </div>
 
 
+            <h7><b>Technican:</b>                 @Model.TechnicianName </h7>
+<br />
+<h7><b>Customer: </b>                    @Model.firstName @Model.LastName</h7>
+<br />
 
+<h7><b>Product:</b>                    @Model.ProductName</h7>
+<br />
+
+<h7><b>Title:</b>                      @Model.Title</h7>
+<br />
+
+<h7><b>Date Opened: </b>                 @Model.DateOpened</h7>
+<br />
 
 
 <form asp-action="Edit" method="post"> 
 
 
     <div class="form-group">
-        <label asp-for="Description">Description</label>
+        <label asp-for="Description"><b>Description:</b></label>
         <textarea asp-for="Description" class="form-control"></textarea>
     </div>
 
 
 
     <div class="form-group">
-        <label asp-for="DateClosed">Date Closed</label>
+        <label asp-for="DateClosed"><b>Date Closed:</b></label>
         <input asp-for="DateClosed" class="form-control">
     </div>
      <input type="hidden" asp-for="IncidentId" />
